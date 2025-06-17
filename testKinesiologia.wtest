@@ -1,0 +1,39 @@
+import kinesiologia.*
+
+describe "group of tests for kinesiologia" {
+
+  const leonardo = new Paciente(edad=40, dolor=10, fortalezaMuscular=50)
+  const milena = new Paciente(edad=3, dolor=30, fortalezaMuscular=50)
+  const magneto1 = new Magneto()
+  const bici1 = new Bicicleta()
+  const mini = new MiniTramp()
+  test "leonardo puede utilizar el magneto1" {
+    assert.that(leonardo.puedeUsar(magneto1))
+  }
+    test "leonardo puede utilizar el bici1" {
+    assert.that(leonardo.puedeUsar(bici1))
+  }
+    test "leonardo puede utilizar el miniTramp" {
+    assert.that(leonardo.puedeUsar(mini))
+  }
+
+  test "milena puede utilizar el magneto1" {
+    assert.that(milena.puedeUsar(magneto1))
+  }
+    test "milena no puede utilizar el bici1" {
+    assert.notThat(milena.puedeUsar(bici1))
+  }
+    test "milena no puede utilizar el miniTramp" {
+    assert.notThat(milena.puedeUsar(mini))
+  }
+
+    test "leonardo le baja el dolor a 9" {
+    leonardo.usar(magneto1)
+    assert.equals(9, leonardo.dolor())
+  }
+    test "Después de usar el magneto una vez, el nivel de dolor de Milena baja a 27.
+" {
+    milena.usar(bici1)
+    assert.equals(27, milena.dolor())
+  }
+}
